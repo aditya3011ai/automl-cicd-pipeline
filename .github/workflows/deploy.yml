@@ -21,8 +21,10 @@ jobs:
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy to EC2
+        env:
+          EC2_HOST: ${{ secrets.EC2_HOST }}
         run: |
-          ssh ${{ secrets.EC2_HOST }} << 'EOF'
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no $EC2_HOST << 'EOF'
             cd ~/automl-api
             git pull origin main
             docker build -t automl-api .
