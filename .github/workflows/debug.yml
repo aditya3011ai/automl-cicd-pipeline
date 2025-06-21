@@ -1,0 +1,15 @@
+name: 🔍 Debug EC2_HOST
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Debug
+        run: |
+        echo "EC2 host is: ${{secrets.EC2_HOST}}"
