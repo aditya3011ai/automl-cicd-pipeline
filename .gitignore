@@ -47,3 +47,6 @@ poetry.lock
 # 📁 System files
 Thumbs.db
 ehthumbs.db
+node.pem
+id_rsa
+id_rsa.pub
