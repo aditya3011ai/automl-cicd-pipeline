@@ -1,0 +1,49 @@
+# 🐍 Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+*.env
+*.egg-info/
+*.log
+
+# 📦 Virtual Environment
+.venv/
+.ENV/
+.env/
+
+# 📁 Project Files
+.DS_Store
+*.sqlite3
+*.db
+*.log
+*.bak
+
+# 🤖 ML Artifacts
+models/
+*.pkl
+*.joblib
+*.h5
+*.onnx
+
+# 🐳 Docker
+*.pid
+*.tar
+*.sock
+
+# 📸 Jupyter & VS Code
+.ipynb_checkpoints/
+.vscode/
+*.ipynb
+*.code-workspace
+
+# 📦 Package-locks
+Pipfile.lock
+poetry.lock
+
+# 📁 System files
+Thumbs.db
+ehthumbs.db
