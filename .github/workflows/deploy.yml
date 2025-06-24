@@ -30,6 +30,5 @@ jobs:
               git pull origin main
               docker build -t automl-api .
               docker stop automl-api || true
-              docker rm automl-api || true
-              docker run -d --name automl-api -p 8000:8000 automl-api
+              docker run --rm -d --name automl-api -p 8000:8000 automl-api
             EOF
