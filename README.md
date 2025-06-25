@@ -13,7 +13,7 @@ This project builds and deploys a complete **Machine Learning pipeline** using *
 - ☁️ **Hosted** on AWS EC2 (auto-pulls, builds, and restarts Docker container)
 
 ---
-
+![Image](./automl_pipline-img2.png)
 ## 🧠 Use Case
 
 Predicts **credit risk** based on user financial data. Useful in banking/fintech for quick loan assessments.
@@ -135,5 +135,5 @@ You trained a classification model to predict creditworthiness (whether a person
 
 0 → ❌ Bad credit risk (likely to default)
 
-![Image](./automl_pipline-img2.png)
+
 
