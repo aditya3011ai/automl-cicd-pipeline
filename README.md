@@ -34,6 +34,7 @@ Predicts **credit risk** based on user financial data. Useful in banking/fintech
 ---
 
 ## 🧱 Project Structure
+```bash
 automl-api/
 │
 ├── app/ # FastAPI application
@@ -51,7 +52,7 @@ automl-api/
 ├── .github/workflows/ # GitHub Actions CI/CD
 │ └── deploy.yml
 ├── README.md # You're here!
-
+```
 ---
 
 ## ⚡ Quickstart
@@ -66,7 +67,9 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 🧪 2. Train Model
+```bash
 python src/train.py
+```
 
 🚀 3. Run API Locally
 ```bash
