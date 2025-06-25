@@ -135,4 +135,5 @@ You trained a classification model to predict creditworthiness (whether a person
 
 0 → ❌ Bad credit risk (likely to default)
 
+/automl_pipline-img2.png
 
