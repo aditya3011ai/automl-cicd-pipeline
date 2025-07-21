@@ -53,3 +53,4 @@ id_rsa.pub
 deploy.yml
 ci-cd.yml
 push.sh
+Note.txt
