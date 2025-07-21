@@ -40,11 +40,15 @@ class InputData(BaseModel):
 @app.post("/predict")
 def predict(data: InputData):
     # Convert input to dataframe
-    input_df = pd.DataFrame([data.dict()])
+    input_df = pd.DataFrame([data.model_dump()])
     
     # Make prediction
-    prediction = predict_model(model, data=input_df)
+    prediction_df = predict_model(model, data=input_df)
     
-    # Return prediction result
-    result = prediction['prediction_label'].iloc[0]
-    return {"prediction": int(result)}
+    # Get first prediction
+    pred_value = int(prediction_df["prediction_label"].values[0])
+    
+    # Map numeric prediction to human-readable risk
+    risk_label = "Good" if pred_value == 1 else "Bad"
+    
+    return {"prediction": pred_value, "risk": risk_label}   
