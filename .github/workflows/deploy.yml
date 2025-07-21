@@ -26,11 +26,12 @@ jobs:
         env:
           EC2_HOST: ${{ secrets.EC2_HOST }}
         run: |
-           ssh -T -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa "ubuntu" "
-           set -e
-           cd ~/automl-cicd-pipeline
-           git pull origin main
-           docker build -t automl-api .
-           docker stop automl-api || true
-           docker run --rm -d --name automl-api -p 8000:8000 automl-api
-           "
+            ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa "$EC2_HOST" << 'EOF'
+            set -e
+            cd ~/automl-cicd-pipeline
+            git pull origin main
+            docker build -t automl-api .
+            docker stop automl-api || true
+            docker rm automl-api || true
+            docker run -d --name automl-api -p 8000:8000 automl-api
+            EOF
