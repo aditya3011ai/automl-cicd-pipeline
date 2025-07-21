@@ -50,5 +50,6 @@ ehthumbs.db
 node.pem
 id_rsa
 id_rsa.pub
-test-deploy.yaml
+deploy.yml
+ci-cd.yml
 push.sh
