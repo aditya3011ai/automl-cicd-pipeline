@@ -25,7 +25,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Lint check 
+      - name: Lint check
         run: |
           pip install flake8
           flake8 . --exclude=venv --max-line-length=100 || echo "Lint warnings"
@@ -34,7 +34,7 @@ jobs:
         run: |
           python src/train.py
 
-      - name: Docker build
+      - name: Build Docker image
         run: |
           docker build -t automl-api .
 
@@ -43,23 +43,23 @@ jobs:
     needs: build-and-test
 
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up SSH
+      - name: Set up SSH and Deploy to EC2
+        env:
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          EC2_USER: ubuntu
         run: |
+          # Setup SSH key and known_hosts
           mkdir -p ~/.ssh
           echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H $(echo ${{ secrets.EC2_HOST }} | cut -d@ -f2) >> ~/.ssh/known_hosts
+          ssh-keyscan -H $EC2_HOST >> ~/.ssh/known_hosts
 
-      - name: Deploy to EC2
-        env:
-          EC2_HOST: ${{ secrets.EC2_HOST }}
-        run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.EC2_HOST }} << 'EOF'
+          # SSH into EC2 and deploy
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $EC2_USER@$EC2_HOST << 'EOF'
             set -e
-            # Clone repo if it doesn't exist, else pull latest changes
             if [ ! -d "automl-cicd-pipeline" ]; then
               git clone https://github.com/aditya3011ai/automl-cicd-pipeline.git
               cd automl-cicd-pipeline
@@ -67,7 +67,9 @@ jobs:
               cd automl-cicd-pipeline
               git pull origin main
             fi
+
             docker build -t automl-api .
             docker stop automl-api || true
+            docker rm automl-api || true
             docker run --rm -d --name automl-api -p 8000:8000 automl-api
           EOF
