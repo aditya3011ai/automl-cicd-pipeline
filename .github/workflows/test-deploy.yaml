@@ -62,9 +62,9 @@ jobs:
             set -e
             cd ~/automl-cicd-pipeline
             git pull origin main
+            docker rmi automl-api || true
             docker build -t automl-api .
             docker stop automl-api || true
             docker rm automl-api || true
-            docker rmi automl-api || true
             docker run -d --name automl-api -p 8000:8000 automl-api
             EOF
