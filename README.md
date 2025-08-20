@@ -12,6 +12,28 @@ This project builds and deploys a complete **Machine Learning pipeline** using *
 - 🚀 **CI/CD** using GitHub Actions for automatic deployment to AWS
 - ☁️ **Hosted** on AWS EC2 (auto-pulls, builds, and restarts Docker container)
 
+## 🧱 How It Will Work – End-to-End Flow
+
+```mermaid
+graph TD
+    A["CSV Dataset"] --> B["train.py using PyCaret"]
+    B --> C["Trained Model (.pkl)"]
+    C --> D["FastAPI App (loads model)"]
+    D --> E["Docker Image"]
+    E --> F["Deployed REST API"]
+    G["New Data"] --> F
+    F --> H["Prediction Result"]
+```
+
+And in parallel:
+
+```mermaid
+graph TD
+P[GitHub Push] --> Q[GitHub Actions CI/CD]
+Q --> R[Train New Model]
+Q --> S[Deploy New API]
+
+```
 ---
 ![Image](./automl_pipline-img2.png)
 ## 🧠 Use Case
