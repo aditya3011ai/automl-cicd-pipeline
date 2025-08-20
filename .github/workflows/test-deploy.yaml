@@ -3,10 +3,13 @@ name: CI/CD Pipeline with EC2 Deploy
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - 'README.md'
   pull_request:
     branches: [ main ]
-  workflow_dispatch:
-
+    paths-ignore:
+      - 'README.md'
+  
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
