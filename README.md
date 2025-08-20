@@ -128,6 +128,48 @@ Response:
   "prediction": 1
 }
 ```
+🔎 Explanation of Features
+
+status (A11, A12, …) → Existing checking account status.
+
+duration → Loan duration in months.
+
+credit_history → Past repayment history.
+
+purpose → Reason for taking the loan (car, furniture, education, etc.).
+
+amount → Loan amount requested.
+
+savings → Applicant’s savings account/bond status.
+
+employment_duration → Number of years employed.
+
+installment_rate → Installment rate as % of income.
+
+personal_status_sex → Marital status and gender.
+
+other_debtors → Whether the applicant has co-applicants/guarantors.
+
+present_residence → Number of years living at the current residence.
+
+property → Type of property owned (real estate, car, savings, etc.).
+
+age → Applicant’s age.
+
+other_installment_plans → Existing installment plans (bank, stores, none).
+
+housing → Type of housing (own, rent, free).
+
+number_credits → Number of existing credits with the bank.
+
+job → Job type/skill level.
+
+people_liable → Number of dependents the applicant supports.
+
+telephone → Whether applicant has a registered telephone.
+
+foreign_worker → Whether applicant is a foreign worker.
+
 🔍 Here's What It Means in Context:
 You trained a classification model to predict creditworthiness (whether a person will default or not). The prediction output is either:
 
